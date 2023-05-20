@@ -1,0 +1,12 @@
+# Build and Release Folders
+*.bin
+*.hex
+*.elf
+*.map
+*.o
+*.tmp
+/include/config/
+/include/generated/
+
+# Other files and folders
+/\.vscode/
