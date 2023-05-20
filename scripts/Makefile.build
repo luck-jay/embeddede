@@ -1,9 +1,12 @@
 -include scripts/Makefile.compiler
+-include arch/$(TARGET_ARCH)/Makefile
 
 # 得到所有的头文件参数
 CFLAGS += $(patsubst %, -I%, $(INCLUDE_PATH))
 
 obj-y += $(addprefix example/$(BUILD_DIR)/, $(example-y))
+obj-y += $(addprefix libs/, $(lib-y))
+obj-y += $(addprefix arch/$(TARGET_ARCH)/, $(arch-y))
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@

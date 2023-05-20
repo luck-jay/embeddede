@@ -1,1 +1,1 @@
-obj-y += arch/cotex-m3/core_cm3.o
+arch-y += core_cm3.o

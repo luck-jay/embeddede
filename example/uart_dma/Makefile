@@ -31,14 +31,13 @@ example-y += uart.o
 example-y += system_stm32f10x.o
 example-y += startup_stm32f10x_hd.o
 
-obj-y += libs/stm32f10x/misc.o
-obj-y += libs/stm32f10x/stm32f10x_dma.o
-obj-y += libs/stm32f10x/stm32f10x_rcc.o
-obj-y += libs/stm32f10x/stm32f10x_gpio.o
-obj-y += libs/stm32f10x/stm32f10x_usart.o
-obj-y += libs/stm32f10x/stm32f10x_exti.o
+lib-y += stm32f10x/misc.o
+lib-y += stm32f10x/stm32f10x_dma.o
+lib-y += stm32f10x/stm32f10x_rcc.o
+lib-y += stm32f10x/stm32f10x_gpio.o
+lib-y += stm32f10x/stm32f10x_usart.o
+lib-y += stm32f10x/stm32f10x_exti.o
 
--include arch/$(TARGET_ARCH)/Makefile
 -include scripts/Makefile.build
 
 .PHONY: all clean
