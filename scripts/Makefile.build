@@ -1,6 +1,8 @@
 -include scripts/Makefile.compiler
 -include arch/$(TARGET_ARCH)/Makefile
 
+CFLAGS += -Iarch/$(TARGET_ARCH)
+
 # 得到所有的头文件参数
 CFLAGS += $(patsubst %, -I%, $(INCLUDE_PATH))
 

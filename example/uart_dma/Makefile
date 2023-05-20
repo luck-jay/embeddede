@@ -4,7 +4,6 @@ TARGET_ARCH := cotex-m3
 INCLUDE_PATH += example/uart_dma/include
 INCLUDE_PATH += include/stm32f10x
 
-CFLAGS += -Iarch/$(TARGET_ARCH)
 CFLAGS += -DSTM32F10X_HD
 # 指定CPU类型
 CPU = -mcpu=cortex-m3
@@ -14,9 +13,9 @@ MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 # 汇编编译选项设置
 ASFLAGS += $(MCU) $(OPT) -Wall -fdata-sections -ffunction-sections
 # c文件编译选项
-CFLAGS += $(MCU) $(OPT) $(C_INCLUDES) -Wall -fdata-sections -ffunction-sections -lstdc++
-# cpp文件编译选项
-CXXFLAGS += $(MCU) $(OPT) $(C_INCLUDES) -Wall -fdata-sections -ffunction-sections
+CFLAGS += $(ASFLAGS) $(C_INCLUDES)
+CXXFLAGS += $(CFLAGS)
+CFLAGS += -lstdc++
 # 指定链接文件
 LDSCRIPT = example/uart_dma/stm32_flash_hd.ld
 

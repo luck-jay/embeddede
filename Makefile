@@ -1,6 +1,6 @@
 BUILD_DIR ?= uart_dma
 # 目标名
-TARGET ?= example
+TARGET ?= $(BUILD_DIR)
 # 指定使用的编译工具
 PREFIX ?= arm-none-eabi-
 
