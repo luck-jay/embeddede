@@ -55,4 +55,4 @@ $(TARGET).bin: $(TARGET).elf
 	$(CP) -O binary -S $< $@
 
 clean:
-	$(RM) -rf $(TARGET).*
+	$(RM) -r $(TARGET).*
