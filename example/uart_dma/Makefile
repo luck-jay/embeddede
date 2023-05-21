@@ -1,5 +1,7 @@
 # 目标CPU架构
 TARGET_ARCH := cotex-m3
+# 指定编译器
+PREFIX := arm-none-eabi-
 
 INCLUDE_PATH += example/uart_dma/include
 INCLUDE_PATH += include/stm32f10x

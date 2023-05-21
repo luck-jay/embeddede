@@ -1,8 +1,6 @@
 BUILD_DIR ?= uart_dma
 # 目标名
 TARGET ?= $(BUILD_DIR)
-# 指定使用的编译工具
-PREFIX ?= arm-none-eabi-
 
 INCLUDE_PATH = include
 
@@ -13,7 +11,7 @@ CURDIR := ${PWD}
 
 MAKEFLAGS += --no-print-directory
 
-export CFLAGS CXXFLAGS CURDIR INCLUDE_PATH TARGET BUILD_DIR PREFIX
+export CFLAGS CXXFLAGS CURDIR INCLUDE_PATH TARGET BUILD_DIR
 
 .PHONY: all clean help
 
