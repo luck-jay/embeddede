@@ -48,10 +48,10 @@ all: $(TARGET).bin
 
 # 生产elf文件
 $(TARGET).elf: $(obj-y)
-	$(CC) $(obj-y) $(LDFLAGS) -o $@
+	$(CC) $^ $(LDFLAGS) -o $@
 	$(SZ) $@
 # 生产bin文件
-$(TARGET).bin: $(TARGET).elf
+%.bin: %.elf
 	$(CP) -O binary -S $< $@
 
 clean:

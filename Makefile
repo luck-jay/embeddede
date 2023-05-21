@@ -1,4 +1,4 @@
-BUILD_DIR ?= uart_dma
+BUILD_DIR ?= hello_world
 # 目标名
 TARGET ?= $(BUILD_DIR)
 
