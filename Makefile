@@ -31,10 +31,8 @@ else
 endif # ifneq ($(BUILD_DIR),)
 
 help:
-	@echo make [BUILD_DIR=xx] [TARGET=xxx] [PREFIX=xxx]
+	@echo make [BUILD_DIR=xx] [TARGET=xxx]
 	@echo
 	@echo BUILD_DIR: Specify the directory name under the 'example' directory.
 	@echo
 	@echo TARGET: Specify the file name generated after compilation.
-	@echo
-	@echo PREFIX: Specify the compiler to use, using arm none eabi gcc by default.
