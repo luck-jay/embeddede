@@ -7,11 +7,11 @@
    make BUILD_DIR=uart_dma    # 以编译uart_dma例子为例
    ```
 # 项目中已有的例子
-| example     | 描述 |
-| :---:       | :---: |
-| hello_world | [例程模板](https://github.com/luck-jay/embeddede/tree/master/example/hello_world) |
-| uart_dma    | [dma串口不定长大数据接收](https://github.com/luck-jay/embeddede/tree/master/example/uart_dma) |
-| time_wheel  | [软件定时器(基于时间轮)](https://github.com/luck-jay/embeddede/tree/master/example/time_wheel) |
+| Example     | Platform  | Introduction |
+| :---:       | :---:     | :---: |
+| hello_world | x86       | [例程模板](https://github.com/luck-jay/embeddede/tree/master/example/hello_world) |
+| uart_dma    | STM32F10x | [dma串口不定长大数据接收](https://github.com/luck-jay/embeddede/tree/master/example/uart_dma) |
+| time_wheel  | STM32F10x | [软件定时器(基于时间轮)](https://github.com/luck-jay/embeddede/tree/master/example/time_wheel) |
 
 # 如何做贡献
 可以参考hello world例程，添加新的例程
