@@ -78,7 +78,7 @@ void bsp_uart1_init(void)
 
 	USART_ITConfig(USART1, USART_IT_IDLE, ENABLE);	/* 使能空闲中断 */
 	USART_Cmd(USART1, ENABLE);
-	USART_DMACmd(USART1, USART_DMAReq_Rx, ENABLE); /* 使能DMA收发 */
+	USART_DMACmd(USART1, USART_DMAReq_Rx | USART_DMAReq_Tx, ENABLE); /* 使能DMA收发 */
 
 	/* 串口中断 */
 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
