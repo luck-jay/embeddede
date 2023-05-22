@@ -6,8 +6,10 @@
 
 #define READ_BUF_SIZE 256
 static unsigned char uart_tmp_buf[READ_BUF_SIZE];
-#define USART1_BUF_SIZE 1024
+#define USART1_BUF_SIZE 512
 static unsigned char usart1_buf_data[USART1_BUF_SIZE];
+#define USART1_SEND_BUF_SIZE 512
+static unsigned char usart1_send_buf_data[USART1_SEND_BUF_SIZE];
 
 struct uart_buf {
 	struct fifo_buf recv_buf;
@@ -17,6 +19,8 @@ struct uart_buf {
 
 static struct uart_buf usart1_buf;
 static struct fifo_buf *recv;
+
+static unsigned char send_finsh_flag = 1;
 
 #define uart_fifo_free(fifo) \
     (FIFO_SPACE((fifo)->head, (fifo)->tail, USART1_BUF_SIZE))
@@ -29,6 +33,8 @@ static struct fifo_buf *recv;
 
 int main(void)
 {
+	unsigned int recv_len = 0;
+
 	bsp_uart1_init();
 	bsp_uart1_dmarx_config(uart_tmp_buf, sizeof(uart_tmp_buf));
 
@@ -42,13 +48,16 @@ int main(void)
 	while(1)
 	{
 		/* 缓冲区中有数据就输出 */
-		if (uart_fifo_size(recv))
+		recv_len = uart_fifo_size(recv);
+		if (recv_len > 0 && send_finsh_flag)
 		{
-			/* 等待数据发送完成 */
-			while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
-			USART_SendData(USART1, recv->buf[recv->tail]);
-
-			recv->tail = (recv->tail + 1) & (usart1_buf.buf_size - 1);
+			send_finsh_flag = 0;
+			for(unsigned int i = 0; i < recv_len; ++i)
+			{
+				usart1_send_buf_data[i] = recv->buf[recv->tail];
+				recv->tail = (recv->tail + 1) & (usart1_buf.buf_size - 1);
+			}
+			bsp_uart1_dmatx_config(usart1_send_buf_data, recv_len);
 		}
 	}
 }
@@ -85,6 +94,21 @@ void USART1_IRQHandler(void)
 		/* 为了清除RXN标志位 */
 		USART_ReceiveData(USART1);
 		USART_ClearITPendingBit(USART1, USART_IT_IDLE);
+	}
+}
+
+void DMA1_Channel4_IRQHandler(void)
+{
+	if(DMA_GetITStatus(DMA1_IT_TE4))
+	{
+		DMA_ClearFlag(DMA1_IT_TE4);
+	}
+
+	/* DMA接收完成中断 */
+	if(DMA_GetITStatus(DMA1_IT_TC4))
+	{
+		send_finsh_flag = 1;
+		DMA_ClearFlag(DMA1_IT_TC4);
 	}
 }
 
