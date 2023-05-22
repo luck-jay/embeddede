@@ -4,7 +4,7 @@
 1. 在example目录下找到你需要编译的例子
 2. 执行以下命令进行编译
    ```shell
-   make BUILD_DIR=uart_dma    # 以编译uart_dma例子为例
+   make BUILD_DIR=uart_dma     # 以编译uart_dma例子为例
    ```
 # 项目中已有的例子
 | Example     | Platform  | Introduction |
