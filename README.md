@@ -7,4 +7,4 @@
    make BUILD_DIR=uart_dma    # 以编译uart_dma例子为例
    ```
 # 如何做贡献
-欢迎大家提交Pull requests
+可以参考hello world例程，添加新的例程
