@@ -1,5 +1,5 @@
-#ifndef __PLT_LIST_H__
-#define __PLT_LIST_H__
+#ifndef __LIST_H__
+#define __LIST_H__
 
 #include "container_of.h"
 
@@ -283,4 +283,4 @@ static inline void list_splice_init(struct list *list,
 	    &pos->member != (head);	\
 	     pos = list_entry(pos->member.next, typeof(*pos), member))
 
-#endif /* __PLT_LIST_H__ */
+#endif /* __LIST_H__ */
